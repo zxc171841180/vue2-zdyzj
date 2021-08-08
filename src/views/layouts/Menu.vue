@@ -1,6 +1,6 @@
 <template>
 	<div style="min-height:500px; background:#545c64">
-		<Menu :menuStyle="{ width: '240px' }">
+		<Menu :menuStyle="{ width: '240px' }" :selectedKeys="selectedKeys">
 			<template v-for="item in menuList">
 				<MenuSubMenu :key="item.meta.resourceId" v-if="item.children">
 					<template slot="title">
@@ -85,9 +85,13 @@
 		data() {
 			return {
 				menuList: JSON.parse(localStorage.getItem("menu")),
+				selectedKeys: [],
 			};
 		},
-		mounted() {},
+		mounted() {
+			this.selectedKeys = [];
+			this.selectedKeys.push(this.$route.meta.resourceId);
+		},
 		methods: {
 			routerPathJump(path) {
 				this.$router.push({
@@ -96,6 +100,19 @@
 						date: Date.now(),
 					},
 				});
+			},
+		},
+		watch: {
+			$route: {
+				//监听的对象
+				deep: true, //深度监听设置为 true
+				handler: function(newV, oldV) {
+					if (newV == null || newV == "") {
+						return;
+					}
+					this.selectedKeys = [];
+					this.selectedKeys.push(newV.meta.resourceId);
+				},
 			},
 		},
 	};
