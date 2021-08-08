@@ -184,5 +184,6 @@ export default {
 		width: 500px;
 		background: #545c64;
 		color: #fff;
+      overflow: hidden;
 	}
 </style>

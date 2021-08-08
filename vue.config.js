@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    port: 8084,
+    port: 2000,
     disableHostCheck: true,
     // 设置代理
     proxy: {

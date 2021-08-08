@@ -7,7 +7,7 @@
 		@mouseenter="isMouseHover = true"
 		@mouseleave="isMouseHover = false"
 	>
-		{{ level + "：" }}
+		<!-- {{ level + "：" }} -->
 		<!-- {{ key }} -->
 		<slot />
 		<!-- {{ paddingLeft }}
@@ -16,63 +16,63 @@
 </template>
 
 <script>
-export default {
-  inject: ['paddingLeft', 'level', 'props', 'menuItemSelect'],
-  props: {},
-  data () {
-    return {
-      paddingLeft: this.paddingLeft,
-      level: this.level,
-      inlineIndent: this.props.inlineIndent,
-      menuItemStyle: this.props.menuItemStyle,
-      selectedKeys: this.props.selectedKeys,
-      // 鼠标悬浮 style
-      hoverStyle: this.props.hoverStyle,
-      // 鼠标是否悬浮
-      isMouseHover: false,
-      // key
-      key: null
-    }
-  },
-  mounted () {
-    this.key = this.$vnode.data.key
-  },
-  methods: {
-    menuItemClick () {
-      this.selectedKeys = []
-      this.selectedKeys.push(this.key)
-      // console.log(this.key, this.selectedKeys);
-      this.menuItemSelect(this.selectedKeys)
-    },
-    // 设置悬浮样式
-    setMenuSubMenuTitleHoverStyle () {
-      if (this.isMouseHover) {
-        // 鼠标悬浮
-        if (this.hoverStyle != null && JSON.stringify(this.hoverStyle) != '{}') {
-          this.menuItemStyle = this.hoverStyle
-        }
-      } else {
-        this.menuItemStyle = this.props.menuItemStyle
-      }
-    }
-  },
-  watch: {
-    props: {
-      immediate: true,
-      handler (val, oldVal) {
-        this.selectedKeys = this.props.selectedKeys
-        this.inlineIndent = this.props.inlineIndent
-        this.menuItemStyle = this.props.menuItemStyle
-        this.hoverStyle = this.props.hoverStyle
-        this.setMenuSubMenuTitleHoverStyle()
-      },
-      deep: true
-    },
-    isMouseHover (val, oldVal) {
-      this.setMenuSubMenuTitleHoverStyle()
-    }
-  }
-}
+	export default {
+		inject: ["paddingLeft", "level", "props", "menuItemSelect"],
+		props: {},
+		data() {
+			return {
+				paddingLeft: this.paddingLeft,
+				level: this.level,
+				inlineIndent: this.props.inlineIndent,
+				menuItemStyle: this.props.menuItemStyle,
+				selectedKeys: this.props.selectedKeys,
+				// 鼠标悬浮 style
+				hoverStyle: this.props.hoverStyle,
+				// 鼠标是否悬浮
+				isMouseHover: false,
+				// key
+				key: null,
+			};
+		},
+		mounted() {
+			this.key = this.$vnode.data.key;
+		},
+		methods: {
+			menuItemClick() {
+				this.selectedKeys = [];
+				this.selectedKeys.push(this.key);
+				// console.log(this.key, this.selectedKeys);
+				this.menuItemSelect(this.selectedKeys);
+			},
+			// 设置悬浮样式
+			setMenuSubMenuTitleHoverStyle() {
+				if (this.isMouseHover) {
+					// 鼠标悬浮
+					if (this.hoverStyle != null && JSON.stringify(this.hoverStyle) != "{}") {
+						this.menuItemStyle = this.hoverStyle;
+					}
+				} else {
+					this.menuItemStyle = this.props.menuItemStyle;
+				}
+			},
+		},
+		watch: {
+			props: {
+				immediate: true,
+				handler(val, oldVal) {
+					this.selectedKeys = this.props.selectedKeys;
+					this.inlineIndent = this.props.inlineIndent;
+					this.menuItemStyle = this.props.menuItemStyle;
+					this.hoverStyle = this.props.hoverStyle;
+					this.setMenuSubMenuTitleHoverStyle();
+				},
+				deep: true,
+			},
+			isMouseHover(val, oldVal) {
+				this.setMenuSubMenuTitleHoverStyle();
+			},
+		},
+	};
 </script>
 
 <style lang="less" scoped>
@@ -95,5 +95,8 @@ export default {
 	.menu-item-selected {
 		background: #fb9e38 !important;
 		color: #fff !important;
+	}
+	.menu-item a {
+		display: block;
 	}
 </style>

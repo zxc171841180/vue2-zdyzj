@@ -1,0 +1,20 @@
+[
+   {
+      "resourceId": "1",
+      "resourceUrl": "components/menu/Menu",
+      "resourceIcon": "radar-chart",
+      "resourcePath": "menu",
+      "resourceName": "menu",
+      "resourceType": "1",
+      "routerPath": "menu"
+   },
+   {
+      "resourceId": "2",
+      "resourceUrl": "components/cascader/Cascader",
+      "resourceIcon": "radar-chart",
+      "resourcePath": "menu",
+      "resourceName": "cascader",
+      "resourceType": "1",
+      "routerPath": "cascader"
+   }
+]
